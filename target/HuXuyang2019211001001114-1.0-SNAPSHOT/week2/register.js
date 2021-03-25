@@ -7,4 +7,5 @@ if(password.value.length<8){
     console.log(password.value.length);
     alert("the password‘s minlength must eight")
 }
+
 }

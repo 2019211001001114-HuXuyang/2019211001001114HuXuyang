@@ -13,4 +13,12 @@
     <url-pattern>/hello</url-pattern>
 </servlet-mapping>
 
+    <servlet>
+        <servlet-name>registerServlet</servlet-name>
+        <servlet-class>HuXuyang.week3.demo.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registerServlet</servlet-name>
+        <url-pattern>/register</url-pattern><!--writer this url in action-->
+    </servlet-mapping>
 </web-app>

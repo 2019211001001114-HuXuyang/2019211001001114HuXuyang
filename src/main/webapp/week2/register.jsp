@@ -25,11 +25,12 @@
     </style>
 </head>
 <body>
-<form method="post" >
+<form  method="post" action="C:\Users\86182\IdeaProjects\2019211001001114HuXuyang\src\main\webapp\week3\RegisterServlet.jsp">
     TEXT:<input type="text" name="name" placeholder="username"><br/>
     PASSWORD：<input type="text" name="password" placeholder="password" id="password"><br/>
     Email：<input type="text" name="email" placeholder="Email"><br/>
     <div>Gender:<input type="radio" >Male <input type="radio">Female </div>
+    birthDate:<input type="text" name="birthDate"><br/>
     <input type="submit" value="register" name="submit" id="submit"/>
 </form>
 </body>
