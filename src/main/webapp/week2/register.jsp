@@ -29,7 +29,7 @@
     TEXT:<input type="text" name="name" placeholder="username"><br/>
     PASSWORD：<input type="text" name="password" placeholder="password" id="password"><br/>
     Email：<input type="text" name="email" placeholder="Email"><br/>
-    <div>Gender:<input type="radio" >Male <input type="radio">Female </div>
+    <div>Gender:<input type="radio" value="male">Male <input type="radio" value="female">Female </div>
     birthDate:<input type="text" name="birthDate"><br/>
     <input type="submit" value="register" name="submit" id="submit"/>
 </form>
