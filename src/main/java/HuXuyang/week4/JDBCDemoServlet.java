@@ -1,4 +1,4 @@
-/*package HuXuyang.week4;
+package HuXuyang.week4;
 
 import javafx.scene.web.HTMLEditor;
 
@@ -119,4 +119,3 @@ public class JDBCDemoServlet extends HttpServlet {
         }
     }
 }
-*/
