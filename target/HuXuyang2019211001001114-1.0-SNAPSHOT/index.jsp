@@ -4,5 +4,8 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="week3/register.jsp">This is register</a>
+<a href="register.jsp">click this login</a>
+<form>
+    <span style="" </form>
+
 <%@include file="footer.jsp"%>

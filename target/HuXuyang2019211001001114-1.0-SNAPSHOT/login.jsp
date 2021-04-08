@@ -9,5 +9,7 @@
 <h1><%= "Login" %>
 </h1>
 <br/>
-<a href="week3/register.jsp">This is register</a>
+username<input type="text" name="username"/><br/>
+password<input type="password" name="password"/><br/>
+<input type="submit" value="Login">
 <%@include file="footer.jsp"%>

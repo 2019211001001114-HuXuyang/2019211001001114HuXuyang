@@ -27,8 +27,6 @@ import java.sql.*;
 
 public class LoginServlet extends HttpServlet {
     Connection con=null;
-
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -47,36 +45,35 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PreparedStatement pstmt=null;
-        ResultSet rs=null;
-        String sql="Select * from usertable where username=? and password=?";
-        String username = request.getParameter("Username");
-        String password = request.getParameter("Password");
+        ResultSet result=null;
+        String sql="SELECT * FROM usertable WHERE username=? and password=?";
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
         try {
             pstmt=con.prepareStatement(sql);
             pstmt.setString(1,username);
             pstmt.setString(2,password);
-            rs=pstmt.executeQuery();
+            result=pstmt.executeQuery();
             response.setContentType("text/html");
             PrintWriter out=response.getWriter();
             out.println("<HTML>");
             out.println("<HEAD><TITLE>UsingServlet</TITLE></HEAD>");
             out.println("<Body>");
 
-            if(rs.next()){
-                out.println("Login Success!!!");
+            if(result.next()){
+                out.println("Login Success(连接成功)");
                 out.println("<br/>");
                 out.println("Welcome,"+username);
-
             }else{
-                out.println("Username or Password Error!!!");
+                out.println("Username or Password Error（用户名或密码错误）");
 
             }
-            out.println("</HTML>");
             out.println("</Body>");
+            out.println("</HTML>");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
