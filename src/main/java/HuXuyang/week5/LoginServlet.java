@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 @WebServlet(
-        urlPatterns = {"/jdbc"},
         initParams = {
                 @WebInitParam(name="driver",value="com.microsoft.sqlserver.jdbc.SQLServerDriver"),
                 @WebInitParam(name="url",value="jdbc:sqlserver://localhost:1433;databaseName=userdb"),
@@ -25,64 +24,54 @@ import java.sql.*;
         },loadOnStartup = 1
 )
 
-public class LoginServlet extends HttpServlet {
-    Connection con=null;
+public class LoginServlet extends HttpServlet{
+    Connection con = null;
+    @Override
+    public void init() throws ServletException{
+        super.init();
+        con = (Connection) getServletContext().getAttribute("con");
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ServletConfig config=getServletConfig();
-        String driver=config.getInitParameter("driver");
-        String url=config.getInitParameter("url");
-        String username=config.getInitParameter("username");
-        String password=config.getInitParameter("password");
-
-        try {
-            Class.forName(driver);
-            Connection con=DriverManager.getConnection(url,username,password);
-            System.out.println("link success");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
     }
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PreparedStatement pstmt=null;
-        ResultSet result=null;
-        String sql="SELECT * FROM usertable WHERE username=? and password=?";
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        PrintWriter writer = response.getWriter();
 
+        boolean isValid = false;
+        PreparedStatement pre = null;
+        ResultSet result = null;
         try {
-            pstmt=con.prepareStatement(sql);
-            pstmt.setString(1,username);
-            pstmt.setString(2,password);
-            result=pstmt.executeQuery();
-            response.setContentType("text/html");
-            PrintWriter out=response.getWriter();
-            out.println("<HTML>");
-            out.println("<HEAD><TITLE>UsingServlet</TITLE></HEAD>");
-            out.println("<Body>");
-
-            if(result.next()){
-                out.println("Login Success(连接成功)");
-                out.println("<br/>");
-                out.println("Welcome,"+username);
-            }else{
-                out.println("Username or Password Error（用户名或密码错误）");
-
+            String sql = "SELECT * FROM usertable WHERE username=? AND password=?";
+            pre = con.prepareStatement(sql);
+            pre.setString(1, username);
+            pre.setString(2, password);
+            result = pre.executeQuery();
+            if (result.next()){
+                isValid = true;
+//                writer.println("Login success!!!");
+                request.setAttribute("id",result.getInt("id"));
+                request.setAttribute("username",result.getString("Username"));
+                request.setAttribute("password",result.getString("password"));
+                request.setAttribute("email",result.getString("Email"));
+                request.setAttribute("gender",result.getString("Gender"));
+                request.setAttribute("birthDate",result.getString("BirthDate"));
+                request.getRequestDispatcher("userInfo.jsp").forward(request,response);
             }
-            out.println("</Body>");
-            out.println("</HTML>");
-
-        } catch (SQLException e) {
+        }catch (Exception e)
+        {
             e.printStackTrace();
         }
-
-
+        if(!isValid){
+//            writer.println("Username or Password Error!!!");
+            request.setAttribute("message","username or password Error");
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+        }
 
     }
-
-
-
-    }
+}
 

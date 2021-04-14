@@ -16,7 +16,6 @@ import java.util.*;
 
 
 @WebServlet(
-        urlPatterns = {"/jdbc"},
         initParams = {
                 @WebInitParam(name="driver",value="com.microsoft.sqlserver.jdbc.SQLServerDriver"),
                 @WebInitParam(name="url",value="jdbc:sqlserver://localhost:1433;databaseName=userdb"),
@@ -100,7 +99,7 @@ public class JDBCDemoServlet extends HttpServlet {
                writer.print("<td>"+rs.getObject("password")+"</td>");
                 writer.print("<td>"+rs.getObject("email")+"</td>");
                 writer.print("<td>"+rs.getObject("gender")+"</td>");
-                writer.print("<td>"+rs.getObject("birhtDate")+"</td>");
+                writer.print("<td>"+rs.getObject("birthDate")+"</td>");
                 writer.print("</tr>");
             }
 

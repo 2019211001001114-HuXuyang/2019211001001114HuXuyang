@@ -38,11 +38,11 @@
         <servlet-name>registerServlet</servlet-name>
         <url-pattern>/register</url-pattern><!--writer this url in action-->
     </servlet-mapping>
-
     <servlet>
         <servlet-name>JDBCDemoServlet</servlet-name>
         <servlet-class>HuXuyang.week4.JDBCDemoServlet</servlet-class>
     </servlet>
+
     <context-param>
         <param-name>driver</param-name>
         <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
@@ -62,6 +62,15 @@
     <servlet-mapping>
         <servlet-name>JDBCDemoServlet</servlet-name>
         <url-pattern>/jdbc</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>HuXuyang.week6.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
 
 </web-app>
