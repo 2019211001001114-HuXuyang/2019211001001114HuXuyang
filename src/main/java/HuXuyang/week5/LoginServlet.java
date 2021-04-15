@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-@WebServlet(
+/*@WebServlet(
         initParams = {
                 @WebInitParam(name="driver",value="com.microsoft.sqlserver.jdbc.SQLServerDriver"),
                 @WebInitParam(name="url",value="jdbc:sqlserver://localhost:1433;databaseName=userdb"),
                 @WebInitParam(name="username",value="sa"),
                 @WebInitParam(name="password",value="123456")
         },loadOnStartup = 1
-)
+)*/
 
 public class LoginServlet extends HttpServlet{
     Connection con = null;
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet{
             result = pre.executeQuery();
             if (result.next()){
                 isValid = true;
-//                writer.println("Login success!!!");
+//              writer.println("Login success!!!");
                 request.setAttribute("id",result.getInt("id"));
                 request.setAttribute("username",result.getString("Username"));
                 request.setAttribute("password",result.getString("password"));
