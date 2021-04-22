@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
                 throwables.printStackTrace();
             }
             String add="insert into usertable values('"+username+"','"+password+"','"+email+"','"+gender+"','"+birthDate+"')";
-            createDbStatement.executeUpdate(add);
+            //createDbStatement.executeUpdate(add);
         }catch (Exception e){
             System.out.println(e);
         }
