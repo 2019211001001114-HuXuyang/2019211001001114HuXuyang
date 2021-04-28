@@ -9,7 +9,7 @@
 <%@include file="header.jsp"%>
 <h1>User Info</h1>
 <%
-User user =(User)request.getAttribute("user");
+User u =(User)request.getAttribute("user");
 %>
 <table>
     <tr><td>Username:</td><td><%=user.getUsername()%></td></tr>
@@ -17,5 +17,6 @@ User user =(User)request.getAttribute("user");
     <tr><td>Email:</td><td><%=user.getEmail()%></td></tr>
     <tr><td>Gender:</td><td><%=user.getGender()%></td></tr>
     <tr><td>Birth Date:</td><td><%=user.getBirthDate()%></td></tr>
+    <tr><a href="updateUser">Update User</a>  </tr>
 </table>
 <%@include file="footer.jsp"%>

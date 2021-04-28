@@ -2,10 +2,8 @@ package com.HuXuyang.dao;
 
 import com.HuXuyang.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +16,16 @@ public class UserDao implements  IUserDao{
 
     @Override
     public int deleteUser(Connection con, User user) throws SQLException {
-        //delete ....where id=?
+        try{
+            Statement createDbStatement = con.createStatement();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String dbRequire="update usertable set username='"+user.getUsername()+"',password='"+user.getPassword()+"',email='"+user.getEmail()+"',gender='"+user.getGender()+"',birthdate='"+simpleDateFormat.format(user.getBirthDate())+"' where id="+user.getId();
+            createDbStatement.executeUpdate(dbRequire);
+            System.out.println("update "+user.getId()+"success");
+            return 1;
+        }catch(Exception e) {
+            System.out.println(e);
+        }
         return 0;
     }
 
@@ -52,11 +59,10 @@ public class UserDao implements  IUserDao{
             user.setId(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
+            user.setEmail(rs.getString("Email"));
             user.setGender(rs.getString("gender"));
             user.setBirthDate(rs.getDate("birthdate"));
-
         }
-
         return user;
     }
 

@@ -1,3 +1,4 @@
+<%@ page import="com.HuXuyang.model.User" %>
 <html>
  <head>
    <title>My Online Shop</title>
@@ -13,7 +14,7 @@
                             padding:0px;
                             margin:0px;" valign="bottom">
       
-     <img src="logo.jpg" align="left">
+     <img src="logo" align="left">
      </td>
    </tr>
    <tr>
@@ -33,9 +34,28 @@
    </td>
    </tr>
    <tr height="25"><td align="right"><font size="18" color="blue">
-   Welcome,<font size="18" color="red"> Guest</font>
+   Welcome,
+       <%
+           User user=(User) session.getAttribute("user");
+           if(user!=null){
+               String username = user.getUsername();
+               out.println(username);
+                       
+           }
+           else{
+             %>  <font size="18" color="red"> Guest</font> <%
+           }
+
+       %>
    </font></td> </tr>
   <tr height="20"><td align="right">
+      <%
+          if(session.getAttribute("user")!=null){
+              %>
+      <br><a href="logout">Logout</a>
+              <%
+          }
+      %>
    <br> <a href="#">Logout</a>
   <br><a href="#">My Cart</a><br/>
 <a href="register.jsp">Register Here</a>
