@@ -39,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
            // System.out.println("email:"+email);
            // System.out.println("gender:"+gender);
            // System.out.println("birthDate:"+birthDate);
-        String[][]arr=new String[20][6];
+        String[][]arr=new String[100][6];
         int a=0;
         try{
             System.out.println("con:"+con);
