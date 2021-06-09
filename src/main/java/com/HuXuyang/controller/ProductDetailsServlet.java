@@ -28,11 +28,7 @@ public class ProductDetailsServlet extends HttpServlet {
             return;
         }
         List<Category> categoryList=null;
-        try {
-            categoryList=Category.findAllCategory(con);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        categoryList=Category.findAllCategory(con);
         request.setAttribute("categoryList",categoryList);
         Product product= null;
         try {

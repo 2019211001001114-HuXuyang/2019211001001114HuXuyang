@@ -3,7 +3,6 @@ package com.HuXuyang.controller;
 import com.HuXuyang.dao.ProductDao;
 import com.HuXuyang.model.Category;
 import com.HuXuyang.model.Product;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;

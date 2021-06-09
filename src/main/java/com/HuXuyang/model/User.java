@@ -9,10 +9,10 @@ public class User {
     private String email;
     private String gender;
     private java.util.Date birthDate;
-    //constructor
-    public User() {
+
+    public  User(){
     }
-    //full
+
     public User(int id, String username, String password, String email, String gender, Date birthDate) {
         this.id = id;
         this.username = username;
@@ -21,8 +21,6 @@ public class User {
         this.gender = gender;
         this.birthDate = birthDate;
     }
-    //setter and setter
-
 
     public int getId() {
         return id;
@@ -71,8 +69,6 @@ public class User {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-
-    //to string
 
     @Override
     public String toString() {

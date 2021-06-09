@@ -12,7 +12,6 @@ public interface IUserDao {
     public int deleteUser(Connection con, User user) throws SQLException;
     public int updateUser(Connection con, User user) throws SQLException;
 
-    //select
     public User findById(Connection con, Integer id) throws SQLException;
     public User findByUsernamePassword(Connection con, String username,String password) throws SQLException;
     public List<User> findByUsername(Connection con, String username) throws SQLException;

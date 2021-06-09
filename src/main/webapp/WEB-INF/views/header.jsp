@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page import="com.HeYuxin.model.User" %>
+<%@page import="com.HuXuyang.model.User" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -100,7 +100,6 @@
 							<li><a href="<%=basePath%>accountDetails"><i class="fa fa-user"></i> Account</a></li>
 
 
-							<li><a href="<%=basePath%>myCart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 							<li><a href="<%=basePath%>cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 							<li><a href="<%=basePath%>register"><i class="fa fa-crosshairs"></i> Register</a></li>
 							<li><a href="<%=basePath%>login"><i class="fa fa-lock"></i> Login</a></li>
@@ -131,7 +130,6 @@
 								<ul role="menu" class="sub-menu">
 									<li><a href="<%=basePath%>shop">Products</a></li>
 									<!--<li><a href="product-details.html">Product Details</a></li>  -->
-									<li><a href="<%=basePath%>myCart">Cart</a></li>
 									<li><a href="<%=basePath%>cart">Cart</a></li>
 									<li><a href="<%=basePath%>order">Order</a></li>
 

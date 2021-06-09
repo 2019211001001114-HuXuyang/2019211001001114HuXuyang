@@ -1,5 +1,6 @@
 package com.HuXuyang.model;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,10 +13,10 @@ public class Category {
     private String categoryName;
     private String description;
     private boolean active;
-
-    public  Category(){
+    public Category(){
 
     }
+
     public Category(int categoryId, String categoryName, String description, boolean active) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
@@ -64,31 +65,38 @@ public class Category {
                 ", active=" + active +
                 '}';
     }
-    public static List<Category> findAllCategory(Connection con) throws SQLException {
-        String sql= "select *from Category";
+    public static List<Category> findAllCategory(Connection con) {
+        String dbRequire="select * from Category";
         List<Category> list=new ArrayList<Category>();
-        PreparedStatement pt = con.prepareStatement(sql);
-        ResultSet rs = pt.executeQuery();
-        while (rs.next()) {
-            Category c = new Category();
-            c.setCategoryId(rs.getInt("categoryId"));
-            c.setCategoryName(rs.getString("categoryName"));
-            c.setDescription(rs.getString("description"));
-            list.add(c);
+        try{
+            PreparedStatement st=con.prepareStatement(dbRequire);
+            ResultSet resultDb=st.executeQuery();
+            while(resultDb.next()) {
+                Category c=new Category();
+                c.setCategoryId(resultDb.getInt("CategoryId"));
+                System.out.println(resultDb.getInt("CategoryId"));
+                c.setCategoryName(resultDb.getString("CategoryName"));
+                c.setDescription(resultDb.getString("Description"));
+                list.add(c);
+            }
+        }catch (Exception e) {
+            System.out.println(e);
         }
-        return  list;
+        return list;
     }
-    public static String findByCategory(Connection con,int categoryId) throws SQLException{
-        String sql= "select *from Category where categoryId=?";
-        List<Category> list=new ArrayList<Category>();
-        PreparedStatement pt = con.prepareStatement(sql);
-        pt.setInt(1,categoryId);
-        ResultSet rs = pt.executeQuery();
+    public static  String findByCategoryId(Connection con,int categoryId) throws SQLException {
         String categoryName=null;
-        while (rs.next()) {
-            categoryName=rs.getString("categoryName");
+        try{
+            String dbRequire="select CategoryName from Category where CategoryId=?";
+            PreparedStatement st=con.prepareStatement(dbRequire);
+            st.setInt(1,categoryId);
+            ResultSet resultDb=st.executeQuery();
+            if(resultDb.next()) {
+                categoryName=resultDb.getString("CategoryName");
+            }
+        }catch (Exception e) {
+            System.out.println(e);
         }
-        return  categoryName;
-    }//end
-
+        return categoryName;
+    }
 }

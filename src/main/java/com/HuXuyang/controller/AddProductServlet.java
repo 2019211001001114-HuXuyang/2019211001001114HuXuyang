@@ -25,11 +25,7 @@ public class AddProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Category category=new Category();
         List<Category> categoryList= null;
-        try {
-            categoryList = category.findAllCategory(con);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        categoryList = category.findAllCategory(con);
         request.setAttribute("categoryList",categoryList);
         String path="/WEB-INF/views/admin/addProduct.jsp";
         request.getRequestDispatcher(path).forward(request,response);
@@ -38,19 +34,16 @@ public class AddProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //get parameters
         String productName = request.getParameter("productName");
         double price = request.getParameter("price") != null ? Double.parseDouble(request.getParameter("price")) : 0.0;
         int categoryId = request.getParameter("categoryId") != null ? Integer.parseInt(request.getParameter("categoryId")) : 8;
         String productDescription = request.getParameter("productDescription");
-        //picture
+
         InputStream inputStream=null;
         Part fileParts=request.getPart("picture");
         if(fileParts!=null){
-            //prints outs information for debugging
             inputStream=fileParts.getInputStream();
         }
-        //set in model
         Product product=new Product();
         product.setProductName(productName);
         product.setProductDescription(productDescription);
@@ -67,5 +60,6 @@ public class AddProductServlet extends HttpServlet {
             throwables.printStackTrace();
         }
 
-    }//emd post
+    }
 }
+
