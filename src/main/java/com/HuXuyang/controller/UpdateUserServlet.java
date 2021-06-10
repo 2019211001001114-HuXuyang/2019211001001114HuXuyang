@@ -28,7 +28,7 @@ public class UpdateUserServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/views/updateUser.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/views/updateUser.jsp").forward(request,response);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class UpdateUserServlet extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setMaxInactiveInterval(10);
                     session.setAttribute("user", u);
-                    request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request, response);
+                    request.getRequestDispatcher("accountDetails").forward(request, response);
                 }
             } catch (SQLException throwable) {
                 throwable.printStackTrace();
