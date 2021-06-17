@@ -29,7 +29,7 @@
 <jsp:forward page="welcome.jsp"></jsp:forward>
 <%--todo 5: else part{ --%>
 
-<%
+
 }else{
     out.println("username password error");
 // todo 6: print username or password error message
@@ -38,8 +38,8 @@
 <%--todo 7: use jsp:include login.jsp page --%>
 <%--todo 8: close else --%>
 <jsp:include page="login.jsp"></jsp:include>
-<%
-    }
+
+}<%
 %>
 </body>
 </html>

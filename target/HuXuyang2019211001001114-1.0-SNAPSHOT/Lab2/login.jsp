@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -9,14 +8,38 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login</title>
+    <title>validate</title>
 </head>
 <body>
-<form action="validate.jsp">
-    Username : <input type="text" name="username"><br>
-    Password : <input type="password" name="password"><br>
-    <input type="submit" value="Login"/>
-</form>
+<%--Todo 1: Use <jsp:useBean> to create a Login bean instance in request scope --%>
+<%--Todo 2: Use <jsp:setProperty> to set  beans' property username and password--%>
 
+<jsp:useBean id="user" class="com.lab2.Login" scope="request">
+    <jsp:setProperty name="user" property="username"
+                     value="${param.username}"/>
+    <jsp:setProperty name="user" property="password"
+                     value="${param.password}"/>
+</jsp:useBean>
+
+<%
+    //todo 3: use if check username is admin and ppassword is admin
+    if(user.getUsername().equals("admin") && user.getPassword().equals("admin")){
+%>
+<%--todo 4: use jsp:forward to welcome.jsp page--%>
+<jsp:forward page="welcome.jsp"></jsp:forward>
+<%--todo 5: else part{ --%>
+
+<%
+}else{
+    out.println("username password error");
+// todo 6: print username or password error message
+%>
+
+<%--todo 7: use jsp:include login.jsp page --%>
+<%--todo 8: close else --%>
+<jsp:include page="login.jsp"></jsp:include>
+<%
+    }
+%>
 </body>
 </html>
